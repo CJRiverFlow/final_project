@@ -6,10 +6,14 @@ Perfomance measures have been applied to each model to compare every model preci
 ## Project Set Up and Installation
 
 ### Dependencies
-This project have been done using openvino version 2020.02, which have to be previously installed
+This project have been done using openvino version 2020.02, which must be previously installed
 and accessible from /opt/intel/openvino/ directory.
 
-Also run `sudo apt-get install python3-tk` to install tkinter package in ubuntu.
+Virtualenv is required to create the python enviroment needed, it can be installed with:
+
+    `python3 -m pip install --user virtualenv`
+
+Also run `sudo apt-get install python3-tk` to install tkinter package needed to control the mouse in ubuntu.
 
 ### Preparing workspace
 The steps to run the project are:
@@ -60,7 +64,7 @@ NOTES: Face detection only on FP32
 
 `--display_values`  
 Flag to display intermediate model outputs on screen
-OPTIONS: True or False
+OPTIONS: "True" or "False"
 
 ## Demo
 As example for running on camera run:
@@ -78,18 +82,37 @@ The files with the benchmarks have been saved in the files:
 
 In this case the variables measured are:
 Model loading time and Total (Accumulated) inference time for each model used.
+
 NOTES: This perfomance have been measured using the demo video file located in bin/ directory.
        There won't be any difference for face detection model because there is only FP32 version available.
 
 ## Results
 For better discussion of the results the files a graphication script can be used:
 
+    `python graphs.py`
+
+As this could change if you run the program, the results I got from my tests are this:
+
+![alt results](stats.png)
+
+The time taken is small for both models, measured in miliseconds, as more of the time of the software is due the 
+mouse movement speed.
+
+About both metrics, we can find diferences in the model loading time for every model.
+The models that takes more time to load are the INT8 and FP32 takes less, due the model steps and the
+internal structure of the model.
+
+The inference time shows how much time the models take to get the output,
+this is important for deployments on the edge, being directly proportional to the processor load, 
+in this case the INT8, is less computer expensive for every model and FP16 and FP32 get similar results, 
+this show the time/precision tradeoff betwen models. 
+
 ## Stand Out Suggestions
 -User can select from command line what input will be used for inference, Camera or Recorded Video File.
 
-### Async Inference
+### Async Inference (Optional)
 Not implemented.
 
 ### Edge Cases
-About testing with several faces, the model takes as default the first one detected 
-to control the mouse avoiding any interference.
+About testing with several faces, the model takes as default the first one detected, 
+avoiding any interference when controling the mouse.

@@ -78,7 +78,7 @@ class FacialLandmarks:
         cv2.rectangle(image, right_eye_square[0], right_eye_square[1], color, thickness)
     
     def crop_eyes(self, landmarks, image):
-        #Left eye points
+        #Left and right  eye points
         le_center = landmarks[1]
         re_center = landmarks[0]
         apotema = 20
