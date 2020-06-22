@@ -1,6 +1,14 @@
 # Computer Pointer Controller
 
-This project uses Gaze Estimation Model with openvino toolkit in Ubuntu 18.04.  
+### Description
+
+This project uses Gaze Estimation Model with openvino toolkit in Ubuntu 18.04. 
+
+The application estimates the gaze of the user as input to control the mouse pointer,  
+several computer vision models are used and work as described in the following pipeline:
+  
+![alt results](images/pipeline.png)
+
 Perfomance measures have been applied to each model to compare every model precision available.
 
 ## Project Set Up and Installation
@@ -93,7 +101,7 @@ For better discussion of the results the files a graphication script can be used
 
 As this could change if you run the program, the results I got from my tests are this:
 
-![alt results](stats.png)
+![alt results](images/stats.png)
 
 The time taken is small for both models, measured in miliseconds, as more of the time of the software is due the 
 mouse movement speed.
